@@ -14,3 +14,18 @@ export const GET_USERS = gql`
     }
   }
 `;
+
+export const SUBMIT_DATA = gql`
+  mutation Mutation($input: UserInput) {
+    submitData(input: $input) {
+      id
+      name
+      email
+      phone
+      cin
+      licenseType
+      role
+      score
+    }
+  }
+`;
