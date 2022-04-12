@@ -5,7 +5,8 @@ import Final from './pages/Final';
 const App = () => {
   return (
     <>
-      <Dashboard />
+      {/* <Dashboard /> */}
+      <Final />
     </>
   );
 };
