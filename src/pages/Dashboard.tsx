@@ -2,6 +2,7 @@ import {
   SearchIcon,
   UserGroupIcon,
   ArrowRightIcon,
+  ArrowLeftIcon,
   StarIcon,
 } from '@heroicons/react/solid';
 import {
@@ -10,6 +11,7 @@ import {
   ClipboardListIcon,
 } from '@heroicons/react/outline';
 import { useState } from 'react';
+import { Link, Outlet } from 'react-router-dom';
 
 const ProfileSideBar = () => {
   return (
@@ -120,15 +122,8 @@ const Table = () => {
           <nav aria-label='Table navigation'>
             <ul className='inline-flex items-center'>
               <li>
-                <button
-                  className='px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple'
-                  aria-label='Previous'>
-                  <svg className='w-4 h-4 fill-current' viewBox='0 0 20 20'>
-                    <path
-                      d='M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z'
-                      clip-rule='evenodd'
-                      fill-rule='evenodd'></path>
-                  </svg>
+                <button className='px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple'>
+                  <ArrowLeftIcon className='w-4 h-4 fill-current' />
                 </button>
               </li>
               <li>
@@ -165,15 +160,8 @@ const Table = () => {
                 </button>
               </li>
               <li>
-                <button
-                  className='px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple'
-                  aria-label='Next'>
-                  <svg className='w-4 h-4 fill-current' viewBox='0 0 20 20'>
-                    <path
-                      d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z'
-                      clip-rule='evenodd'
-                      fill-rule='evenodd'></path>
-                  </svg>
+                <button className='px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple'>
+                  <ArrowRightIcon className='w-4 h-4 fill-current' />
                 </button>
               </li>
             </ul>
@@ -221,71 +209,89 @@ const StatsCards = () => {
 const Page = () => {
   return (
     <div className='flex h-screen bg-gray-50'>
-      <aside className='z-20 hidden w-64 overflow-y-auto bg-zinc-100 border md:block flex-shrink-0'>
-        <div className='py-4 text-gray-500 '>
-          <span className='ml-6 text-lg font-bold text-gray-800'>Workflow</span>
-          <ProfileSideBar />
-          <ul className='mt-6'>
-            <li className='relative px-6 py-3'>
-              <a
-                className='inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 '
-                href='../index.html'>
-                <HomeIcon className='w-5 h-5' />
-                <span className='ml-4'>Dashboard</span>
-              </a>
-            </li>
-          </ul>
-          <ul>
-            <li className='relative px-6 py-3'>
-              <a
-                className='inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 '
-                href='../forms.html'>
-                <ClipboardListIcon className='w-5 h-5' />
-                <span className='ml-4'>Forms</span>
-              </a>
-            </li>
-            <li className='relative px-6 py-3'>
-              <a
-                className='inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 '
-                href='../charts.html'>
-                <ChartSquareBarIcon className='w-5 h-5' />
-                <span className='ml-4'>Charts</span>
-              </a>
-            </li>
-          </ul>
-          <div className='px-6 my-6'></div>
-        </div>
-      </aside>
+      <SideBar />
       <div className='flex flex-col flex-1'>
-        <header className='z-10 py-4 bg-white border-b'>
-          <div className='container flex items-center justify-between h-full px-6 mx-auto text-purple-600 '>
-            <div className='flex justify-center flex-1'>
-              <div className='relative w-full max-w-xl mr-6 focus-within:text-purple-500'>
-                <div className='absolute inset-y-0 flex items-center pl-3'>
-                  <SearchIcon className='w-5 h-5 text-slate-300' />
-                </div>
-
-                <input
-                  className='transition shadow-sm focus:ring-2 focus:ring-blue-500 border-none appearance-none w-full text-slate-900 placeholder-slate-400  rounded-lg py-2 pl-10 ring-1 ring-slate-900/10'
-                  type='text'
-                  placeholder='Filter projects...'
-                />
-              </div>
-            </div>
-          </div>
-        </header>
+        <Header />
         <main className='h-full overflow-y-auto bg-white scrollbar-hide'>
-          <div className='container px-6 mx-auto grid'>
-            <h2 className='my-6 text-2xl font-semibold text-gray-700'>
-              Dashboard
-            </h2>
-            <CTA />
-            <StatsCards />
-          </div>
-          <Table />
+          <Outlet />
         </main>
       </div>
     </div>
+  );
+};
+
+export const Home = () => {
+  return (
+    <>
+      <div className='container px-6 mx-auto grid'>
+        <h2 className='my-6 text-2xl font-semibold text-gray-700'>Dashboard</h2>
+        <CTA />
+        <StatsCards />
+      </div>
+      <Table />
+    </>
+  );
+};
+
+const SideBar = () => {
+  return (
+    <aside className='z-20 hidden w-64 overflow-y-auto bg-zinc-100 border md:block flex-shrink-0'>
+      <div className='py-4 text-gray-500 '>
+        <span className='ml-6 text-lg font-bold text-gray-800'>Workflow</span>
+        <ProfileSideBar />
+        <ul className='mt-6'>
+          <li className='relative px-6 py-3'>
+            <Link
+              to='/index/home'
+              className='inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800'>
+              <HomeIcon className='w-5 h-5' />
+              <span className='ml-4'>Dashboard</span>
+            </Link>
+          </li>
+        </ul>
+        <ul>
+          <li className='relative px-6 py-3'>
+            <Link
+              to='/index/forms'
+              className='inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 '>
+              <ClipboardListIcon className='w-5 h-5' />
+              <span className='ml-4'>Forms</span>
+            </Link>
+          </li>
+          <li className='relative px-6 py-3'>
+            <Link
+              to='/index/charts'
+              className='inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 '>
+              <ChartSquareBarIcon className='w-5 h-5' />
+              <span className='ml-4'>Charts</span>
+            </Link>
+          </li>
+        </ul>
+        <div className='px-6 my-6'></div>
+      </div>
+    </aside>
+  );
+};
+
+const Header = () => {
+  return (
+    <header className='z-10 py-4 bg-white border-b'>
+      <div className='container flex items-center justify-between h-full px-6 mx-auto text-purple-600 '>
+        <div className='flex justify-center flex-1'>
+          <div className='relative w-full max-w-xl mr-6 focus-within:text-purple-500'>
+            <div className='absolute inset-y-0 flex items-center pl-3'>
+              <SearchIcon className='w-5 h-5 text-slate-300' />
+            </div>
+
+            <input
+              className='transition shadow-sm focus:ring-2 focus:ring-blue-500 border-none appearance-none w-full text-slate-900 placeholder-slate-400  rounded-lg py-2 pl-10 ring-1 ring-slate-900/10'
+              type='text'
+              placeholder='Filter projects...'
+            />
+          </div>
+        </div>
+      </div>
+    </header>
   );
 };
 

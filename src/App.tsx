@@ -1,11 +1,19 @@
 import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
+import Dashboard, { Home } from './pages/Dashboard';
 import Final from './pages/Final';
-
+import { Routes, Route, useLocation } from 'react-router-dom';
 const App = () => {
+  const { pathname } = useLocation();
+
   return (
     <>
-      <Dashboard />
+      <Routes location={pathname.replace('index', '')}>
+        <Route path='/' element={<Dashboard />}>
+          <Route path='home' element={<Home />} />
+          <Route path='forms' element={<h1>Forms</h1>} />
+        </Route>
+      </Routes>
+
       {/* <Final /> */}
     </>
   );
