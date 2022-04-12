@@ -48,6 +48,7 @@
           "@electron-forge/plugin-webpack",
           {
             "mainConfig": "./webpack.main.config.js",
+            "devContentSecurityPolicy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
             "renderer": {
               "config": "./webpack.renderer.config.js",
               "entryPoints": [
@@ -74,6 +75,7 @@
     "@graphql-codegen/typescript": "2.4.8",
     "@graphql-codegen/typescript-operations": "2.3.5",
     "@graphql-codegen/typescript-react-apollo": "3.2.11",
+    "@tailwindcss/forms": "^0.5.0",
     "@types/react": "^18.0.1",
     "@types/react-dom": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
@@ -95,6 +97,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.5.10",
+    "@heroicons/react": "^1.0.6",
     "@reduxjs/toolkit": "^1.8.1",
     "electron-squirrel-startup": "^1.0.0",
     "graphql": "^16.3.0",
