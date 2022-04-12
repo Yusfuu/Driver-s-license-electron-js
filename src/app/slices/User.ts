@@ -21,13 +21,16 @@ export const UserSlice = createSlice({
     decrementScore: (state) => {
       state.score -= 1;
     },
+    updateScore: (state, action: PayloadAction<number>) => {
+      state.score = action.payload;
+    },
     setLicenseType: (state, action: PayloadAction<number>) => {
       state.licenseType += action.payload;
     },
   },
 });
 
-export const { incrementScore, decrementScore, setLicenseType } =
+export const { incrementScore, decrementScore, setLicenseType, updateScore } =
   UserSlice.actions;
 
 export default UserSlice.reducer;
