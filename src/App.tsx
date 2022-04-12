@@ -1,5 +1,12 @@
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+
 const App = () => {
-  return <h1 className='font-bold underline text-sm'>Hello world!</h1>;
+  return (
+    <>
+      <Dashboard />
+    </>
+  );
 };
 
 export default App;
