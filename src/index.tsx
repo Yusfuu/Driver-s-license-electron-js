@@ -1,22 +1,18 @@
-import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
-import { BrowserRouter } from 'react-router-dom';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import App from './App';
-import './index.css';
+import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
+import { store } from "./app/store";
+import { BrowserRouter } from "react-router-dom";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import App from "./App";
+import "./index.css";
+import apollo from "./graphql/apollo";
 
-const container = document.getElementById('app');
+const container = document.getElementById("app");
 const root = createRoot(container);
-
-const client = new ApolloClient({
-  uri: 'http://localhost:4000',
-  cache: new InMemoryCache(),
-});
 
 root.render(
   <BrowserRouter>
-    <ApolloProvider client={client}>
+    <ApolloProvider client={apollo}>
       <Provider store={store}>
         <App />
       </Provider>
