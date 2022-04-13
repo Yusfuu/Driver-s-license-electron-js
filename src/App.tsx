@@ -11,18 +11,15 @@ const App = () => {
   const path = pathname.replace('/index', '') || '/';
 
   return (
-    <>
-      <Routes location={path}>
-        <Route path='/' element={<Dashboard />}>
-          <Route path='home' element={<IndexDashboard />} />
-          <Route path='charts' element={<Chart />} />
-        </Route>
-        <Route path='/admin' element={<Landing />}>
-          <Route path='quiz' element={<Quiz />} />
-          <Route path='submit' element={<Final />} />
-        </Route>
-      </Routes>
-    </>
+    <Routes location={path}>
+      <Route path='/' element={<Landing />} />
+      <Route path='/admin' element={<Dashboard />}>
+        <Route path='home' element={<IndexDashboard />} />
+        <Route path='sharts' element={<Chart />} />
+      </Route>
+      <Route path='/quiz' element={<Quiz />} />
+      <Route path='submit' element={<Final />} />
+    </Routes>
   );
 };
 
