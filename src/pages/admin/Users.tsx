@@ -31,6 +31,11 @@ export const Users = () => {
     }
   }, 500);
 
+  const exportUsers = () => {
+    console.log('export users');
+    // ipcRenderer
+  };
+
   return (
     <>
       <div className='px-6 mx-auto my-6'>
@@ -53,7 +58,9 @@ export const Users = () => {
             </form>
           </div>
           <div className='flex items-center space-x-2 sm:space-x-3 ml-auto'>
-            <button className='text-gray-900 bg-white transition border border-gray-300 hover:bg-gray-100 focus:ring-2 focus:ring-indigo-400 font-medium flex gap-2 items-center justify-center rounded-lg text-sm px-3 py-2 '>
+            <button
+              onClick={exportUsers}
+              className='text-gray-900 bg-white transition border border-gray-300 hover:bg-gray-100 focus:ring-2 focus:ring-indigo-400 font-medium flex gap-2 items-center justify-center rounded-lg text-sm px-3 py-2 '>
               <DocumentDownloadIcon className='w-5 h-5' />
               <span>Export</span>
             </button>
