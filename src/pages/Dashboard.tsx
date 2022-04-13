@@ -206,7 +206,7 @@ const StatsCards = () => {
   );
 };
 
-const Page = () => {
+export const Dashboard = () => {
   return (
     <div className='flex h-screen bg-gray-50'>
       <SideBar />
@@ -252,7 +252,7 @@ const SideBar = () => {
         <ul>
           <li className='relative px-6 py-3'>
             <Link
-              to='forms'
+              to='charts'
               className='inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 '>
               <ClipboardListIcon className='w-5 h-5' />
               <span className='ml-4'>Forms</span>
@@ -294,5 +294,3 @@ const Header = () => {
     </header>
   );
 };
-
-export default Page;
