@@ -24,8 +24,8 @@ export const UserSlice = createSlice({
     updateScore: (state, action: PayloadAction<number>) => {
       state.score = action.payload;
     },
-    setLicenseType: (state, action: PayloadAction<number>) => {
-      state.licenseType += action.payload;
+    setLicenseType: (state, action: PayloadAction<"A" | "B" | null>) => {
+      state.licenseType = action.payload;
     },
   },
 });

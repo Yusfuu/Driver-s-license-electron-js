@@ -58,7 +58,6 @@ export const Quiz = () => {
     dispatch(updateScore(newScore));
     setShowScore(true);
     if (newScore > 2) {
-      console.log("aa");
       setTimeout(() => {
         setFadeIt(true);
       }, 4000);
@@ -67,12 +66,25 @@ export const Quiz = () => {
 
   return (
     <div className="flex flex-col w-screen px-5 h-screen bg-[#1A1A1A] justify-center items-center">
-      <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-        <div
-          className="bg-blue-600 h-2.5 rounded-full"
-          style={{ width: couter * 10 + "%" }}
-        ></div>
-      </div>
+      {!showScore && (
+        <>
+          <div className="flex w-full justify-between mb-1">
+            <span className="text-base font-medium text-blue-700 dark:text-white">
+              REMAINED
+            </span>
+            <span className="text-sm font-medium text-blue-700 dark:text-white">
+              {10 - couter}s
+            </span>
+          </div>
+
+          <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+            <div
+              className="bg-blue-600 h-2.5 rounded-full"
+              style={{ width: couter * 10 + "%" }}
+            ></div>
+          </div>
+        </>
+      )}
       {showScore ? (
         <h1 className="text-3xl font-semibold text-center text-white">
           You scored {score} out of {questions.length}{" "}
@@ -99,6 +111,7 @@ export const Quiz = () => {
                   setShowScore(false);
                   setCurrentQuestion(0);
                   setSelectedOptions([]);
+                  setCouter(0);
                 }}
                 className="w-1/3 py-1 mt-10 bg-indigo-600 rounded-md"
               >
