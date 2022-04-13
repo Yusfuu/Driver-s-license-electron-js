@@ -4,6 +4,7 @@ import Final from "./pages/Final";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Quiz } from "./pages/Quiz";
 import { Landing } from "./pages/Landing";
+import { Thankyou } from "./pages/thankyou";
 
 const App = () => {
   const { pathname } = useLocation();
@@ -19,7 +20,8 @@ const App = () => {
           <Route path="forms" element={<Quiz />} />
         </Route>
         <Route path="/quiz" element={<Quiz />} />
-        <Route path="submit" element={<Final />} />
+        <Route path="/submit" element={<Final />} />
+        <Route path="/thankyou" element={<Thankyou />} />
       </Routes>
       {/* <Final /> */}
     </>

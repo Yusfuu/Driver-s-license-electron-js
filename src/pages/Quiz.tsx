@@ -4,6 +4,7 @@ import { useAppDispatch } from "../app/hooks";
 import { updateScore } from "../app/slices/index";
 import { FireworksProvider } from "../components/Fireworks";
 import { useNavigate } from "react-router-dom";
+import { useInterval } from "../components/useInterval";
 
 export const Quiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -11,17 +12,18 @@ export const Quiz = () => {
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [fadeIt, setFadeIt] = useState(false);
+  const [couter, setCouter] = useState(0);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log("currentQuestion", {
-      currentQuestion,
-      selectedOptions,
-      score,
-      showScore,
-    });
-  }, [selectedOptions]);
+  useInterval(() => {
+    if (couter < 10) {
+      setCouter(couter + 1);
+    } else {
+      console.log("done");
+      handleNext();
+    }
+  }, 1000);
 
   const handleAnswerOption = (answer: any) => {
     setSelectedOptions([
@@ -39,6 +41,7 @@ export const Quiz = () => {
   const handleNext = () => {
     const nextQues = currentQuestion + 1;
     nextQues < questions.length && setCurrentQuestion(nextQues);
+    setCouter(0);
   };
 
   const handleSubmitButton = () => {
@@ -64,6 +67,12 @@ export const Quiz = () => {
 
   return (
     <div className="flex flex-col w-screen px-5 h-screen bg-[#1A1A1A] justify-center items-center">
+      <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+        <div
+          className="bg-blue-600 h-2.5 rounded-full"
+          style={{ width: couter * 10 + "%" }}
+        ></div>
+      </div>
       {showScore ? (
         <h1 className="text-3xl font-semibold text-center text-white">
           You scored {score} out of {questions.length}{" "}
@@ -72,11 +81,7 @@ export const Quiz = () => {
               <strong>Congratulations</strong>
               {fadeIt ? (
                 <button
-                  onClick={() => {
-                    console.log("gooo");
-
-                    // navigate("/quiz/submit");
-                  }}
+                  onClick={() => navigate("/submit")}
                   className="w-1/3 py-3 mt-10 bg-indigo-600 rounded-md"
                 >
                   <small>complete</small>

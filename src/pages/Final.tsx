@@ -3,9 +3,11 @@ import { useMutation } from "@apollo/client";
 import { ChevronRightIcon, StarIcon } from "@heroicons/react/solid";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "../app/hooks";
+import { useNavigate } from "react-router-dom";
 
 const Page = () => {
   const { licenseType, score } = useAppSelector((state) => state.User);
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -18,7 +20,7 @@ const Page = () => {
 
   const addData = async (e: any) => {
     e.preventDefault();
-    await mutate({
+    const res = await mutate({
       variables: {
         input: {
           ...userData,
@@ -27,12 +29,8 @@ const Page = () => {
         },
       },
     });
+    if (!res.errors) navigate("/thankyou");
   };
-
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
-
   return (
     <div className="bg-white pb-8 sm:pb-12 lg:pb-12">
       <div className="pt-8 overflow-hidden sm:pt-12 lg:relative lg:py-48">
