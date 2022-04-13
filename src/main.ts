@@ -26,10 +26,7 @@ const createWindow = (): void => {
     height: 600,
     width: 800,
     webPreferences: {
-<<<<<<< HEAD
-=======
       nodeIntegration: true,
->>>>>>> b276c7623833a51ec210df13671a8eff12850fb2
       preload: path.resolve('./src/preload.js'),
     },
   });
