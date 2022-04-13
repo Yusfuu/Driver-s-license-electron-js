@@ -1,4 +1,6 @@
-const RowTable = ({ title, value }: any) => {
+import { useGetUsersQuery, User } from '../../graphql/generated/graphql';
+
+const RowTable = ({ name, cin, score, email, createdAt }: User) => {
   const isPassed = true;
 
   return (
@@ -13,12 +15,13 @@ const RowTable = ({ title, value }: any) => {
             />
           </div>
           <div>
-            <p className='font-semibold'>Hans Burger</p>
-            <p className='text-xs text-gray-600'>10x Developer</p>
+            <p className='font-semibold'>{name}</p>
+            <p className='text-xs text-gray-600'>{cin}</p>
           </div>
         </div>
       </td>
-      <td className='px-4 py-3 text-sm'>$ 863.45</td>
+      <td className='px-4 py-3 text-sm'>{email}</td>
+      <td className='px-4 py-3 text-sm'>{score}</td>
       <td className='px-4 py-3 text-xs'>
         <span
           className={`px-3 py-1 text-xs font-semibold rounded-full ${
@@ -27,12 +30,21 @@ const RowTable = ({ title, value }: any) => {
           {isPassed ? 'Passed' : 'Failed'}
         </span>
       </td>
-      <td className='px-4 py-3 text-sm'>6/10/2020</td>
+      <td className='px-4 py-3 text-sm'>
+        {new Intl.DateTimeFormat('en-US', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        }).format(new Date(+createdAt))}
+      </td>
     </tr>
   );
 };
 
 export const Table = () => {
+  const { data } = useGetUsersQuery();
+
   return (
     <div className='w-full overflow-hidden mt-4'>
       <div className='w-full overflow-x-auto'>
@@ -40,18 +52,16 @@ export const Table = () => {
           <thead>
             <tr className='text-xs font-semibold text-left text-gray-500 uppercase border-y shadow bg-slate-50'>
               <th className='px-4 py-3'>Client</th>
-              <th className='px-4 py-3'>Amount</th>
+              <th className='px-4 py-3'>Email</th>
+              <th className='px-4 py-3'>Score</th>
               <th className='px-4 py-3'>Status</th>
               <th className='px-4 py-3'>Date</th>
             </tr>
           </thead>
           <tbody className='bg-white divide-y'>
-            <RowTable />
-            <RowTable />
-            <RowTable />
-            <RowTable />
-            <RowTable />
-            <RowTable />
+            {data?.getUsers.map((user) => (
+              <RowTable key={user.id} {...user} />
+            ))}
           </tbody>
         </table>
       </div>

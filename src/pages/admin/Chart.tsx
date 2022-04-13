@@ -1,4 +1,4 @@
-import WelcomeBanner from '../../components/WelcomeBanner';
+import WelcomeBanner from '../../components/Dashboard/WelcomeBanner';
 import {
   DashboardCard1,
   DashboardCard2,

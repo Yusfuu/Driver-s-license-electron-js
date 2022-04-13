@@ -1,4 +1,8 @@
-import { ChartSquareBarIcon, HomeIcon } from '@heroicons/react/outline';
+import {
+  ChartSquareBarIcon,
+  HomeIcon,
+  LoginIcon,
+} from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
 import { ProfileSideBar } from './ProfileSideBar';
 
@@ -13,6 +17,11 @@ const links = [
     icon: <ChartSquareBarIcon className='w-5 h-5' />,
     to: 'charts',
   },
+  {
+    name: 'Pgae',
+    icon: <LoginIcon className='w-5 h-5' />,
+    to: 'login',
+  },
 ];
 
 export const SideBar = () => {
@@ -21,7 +30,7 @@ export const SideBar = () => {
       <div className='py-4 text-gray-500 '>
         <ProfileSideBar />
         {links.map((link) => (
-          <ul>
+          <ul key={link.name}>
             <li className='relative px-6 py-3'>
               <Link
                 to={link.to}

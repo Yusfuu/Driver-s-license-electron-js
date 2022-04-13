@@ -9,7 +9,9 @@ import {
   Legend,
   Filler,
 } from 'chart.js';
+import { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
+import { useGetUsersQuery } from '../../graphql/generated/graphql';
 
 ChartJS.register(
   CategoryScale,
@@ -63,41 +65,11 @@ export const options = {
   maintainAspectRatio: false,
 };
 
-export const data = {
-  labels: [
-    '12-01-2020',
-    '01-01-2021',
-    '02-01-2021',
-    '03-01-2021',
-    '04-01-2021',
-    '05-01-2021',
-    '06-01-2021',
-    '07-01-2021',
-    '08-01-2021',
-    '09-01-2021',
-    '10-01-2021',
-    '11-01-2021',
-    '12-01-2021',
-    '01-01-2022',
-    '02-01-2022',
-    '03-01-2022',
-    '04-01-2022',
-    '05-01-2022',
-    '06-01-2022',
-    '07-01-2022',
-    '08-01-2022',
-    '09-01-2022',
-    '10-01-2022',
-    '11-01-2022',
-    '12-01-2022',
-    '01-01-2023',
-  ],
+const data = {
+  labels: [0],
   datasets: [
     {
-      data: [
-        732, 610, 610, 504, 504, 504, 349, 349, 504, 342, 504, 610, 391, 192,
-        154, 273, 191, 191, 126, 263, 349, 252, 423, 622, 470, 532,
-      ],
+      data: [0],
       fill: true,
       backgroundColor: '#f0f5feb8',
       borderColor: '#4f46e5',
@@ -112,10 +84,39 @@ export const data = {
 };
 
 export const DashboardCard1 = () => {
+  const { data: UsersByDay, loading } = useGetUsersQuery();
+
+  const [chartData, setChartData] = useState(null);
+
+  useEffect(() => {
+    if (!loading) {
+      const labels = UsersByDay.countUsersByDay.map(({ _id }) => _id);
+      const data = UsersByDay.countUsersByDay.map(({ count }) => count);
+      const c = {
+        labels,
+        datasets: [
+          {
+            data,
+            fill: true,
+            backgroundColor: '#f0f5feb8',
+            borderColor: '#4f46e5',
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 3,
+            pointBackgroundColor: '#4338ca',
+            clip: 20,
+            tension: 0,
+          },
+        ],
+      };
+      setChartData(c);
+    }
+  }, [loading]);
+
   return (
     <div className='col-span-full xl:col-span-6 bg-white rounded-lg border'>
       <header className='px-5 py-4 border-b border-slate-100'>
-        <h2 className='font-semibold text-slate-800'>Reason for Refunds</h2>
+        <h2 className='font-semibold text-slate-800'>Users per Day</h2>
       </header>
       <div className='px-5 py-3'>
         <div className='flex items-start'>
@@ -127,7 +128,9 @@ export const DashboardCard1 = () => {
       </div>
       {/* Chart built with Chart.js 3 */}
       <div className='grow'>
-        <Line options={options} data={data} width={595} height={248} />
+        {chartData && (
+          <Line options={options} data={chartData} width={595} height={248} />
+        )}
       </div>
     </div>
   );
@@ -200,9 +203,7 @@ export const DashboardCard2 = () => {
   return (
     <div className='flex flex-col col-span-full sm:col-span-6 bg-white rounded-lg border'>
       <header className='px-5 py-4 border-b border-slate-100 flex items-center'>
-        <h2 className='font-semibold text-slate-800'>
-          Sales Over Time (all stores)
-        </h2>
+        <h2 className='font-semibold text-slate-800'>Test Chart</h2>
       </header>
       <div className='grow'>
         <Line options={options} data={chartData} width={595} height={248} />
