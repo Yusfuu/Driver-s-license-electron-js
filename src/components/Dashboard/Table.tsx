@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import { useGetUsersQuery, User } from '../../graphql/generated/graphql';
 
-const RowTable = ({ name, cin, score, email, createdAt }: User) => {
+export const RowTable = ({ name, cin, score, email, createdAt }: User) => {
   const isPassed = true;
 
   return (
@@ -46,7 +47,13 @@ export const Table = () => {
   const { data } = useGetUsersQuery();
 
   return (
-    <div className='w-full overflow-hidden mt-4'>
+    <div className='w-full mt-4'>
+      <div className='flex justify-between px-6 py-2'>
+        <h2 className='font-bold text-lg'>Latest users</h2>
+        <span className='cursor-pointer text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2'>
+          <Link to='/admin/users'>View all</Link>
+        </span>
+      </div>
       <div className='w-full overflow-x-auto'>
         <table className='w-full whitespace-no-wrap'>
           <thead>

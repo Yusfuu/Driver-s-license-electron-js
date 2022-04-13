@@ -46,7 +46,7 @@ export const StatsCards = () => {
   ]);
 
   return (
-    <div className='space-y-2 '>
+    <div className='space-y-2'>
       <h2 className='font-bold text-lg'>Overview</h2>
       <div className='grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4'>
         {stats.map((stat, index) => (

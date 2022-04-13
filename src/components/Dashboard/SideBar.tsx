@@ -2,6 +2,7 @@ import {
   ChartSquareBarIcon,
   HomeIcon,
   LoginIcon,
+  UsersIcon,
 } from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
 import { ProfileSideBar } from './ProfileSideBar';
@@ -18,7 +19,12 @@ const links = [
     to: 'charts',
   },
   {
-    name: 'Pgae',
+    name: 'Users',
+    icon: <UsersIcon className='w-5 h-5' />,
+    to: 'users',
+  },
+  {
+    name: 'Page',
     icon: <LoginIcon className='w-5 h-5' />,
     to: 'login',
   },
