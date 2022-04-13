@@ -1,9 +1,9 @@
-import WelcomeBanner from '../components/WelcomeBanner';
+import WelcomeBanner from '../../components/WelcomeBanner';
 import {
   DashboardCard1,
   DashboardCard2,
   DashboardCard3,
-} from '../components/DashboardCard';
+} from '../../components/Dashboard/Chart';
 
 export const Chart = () => {
   return (

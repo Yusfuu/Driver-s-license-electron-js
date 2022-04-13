@@ -1,2 +1,2 @@
-export { Chart } from './Chart';
-export { Dashboard } from './Dashboard';
+export { Chart } from './admin/Chart';
+export { Dashboard } from './admin/Dashboard';
