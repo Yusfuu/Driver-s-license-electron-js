@@ -14,10 +14,9 @@ the system saves all the information of the admitted candidates
 
 the person in charge of the exam will consult via his interface the statistics and information of each candidate
 
-
 ## Libraries and Technologies
 
-Learn more about our stack:
+> What's inside?
 
 - [Electronjs](https://turborepo.org/docs/features/pipelines)
 - [Apollo Server](https://www.apollographql.com/docs/apollo-server)
@@ -27,3 +26,6 @@ Learn more about our stack:
 - [Graphql](https://graphql.org/)
 - [Typescript](https://www.typescriptlang.org/)
 - [Mongodb](https://www.mongodb.com/)
+- [Jestjs](https://jestjs.io/)
+- [Docker](https://www.docker.com/)
+- [Tailwindcss](https://tailwindcss.com/)
