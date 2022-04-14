@@ -13,3 +13,17 @@ if the candidate passes the test, a new window is displayed to save their detail
 the system saves all the information of the admitted candidates
 
 the person in charge of the exam will consult via his interface the statistics and information of each candidate
+
+
+## Libraries and Technologies
+
+Learn more about our stack:
+
+- [Electronjs](https://turborepo.org/docs/features/pipelines)
+- [Apollo Server](https://www.apollographql.com/docs/apollo-server)
+- [Apollo Client](https://www.apollographql.com/docs/react)
+- [Reactjs](https://reactjs.org/)
+- [Graphql-code-generator](https://www.graphql-code-generator.com/)
+- [Graphql](https://graphql.org/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Mongodb](https://www.mongodb.com/)
