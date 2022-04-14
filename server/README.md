@@ -51,38 +51,6 @@ Build:
 yarn build
 ```
 
-TODOS: ✔ or ✘
-
-```bash
-- category :
-[✘] fields( name,... )
-[✘] brands[]
-[✘] products[]
-
-- Product
-[✘] fields( name,.... )
-[✘] store
-[✘] brand?
-[✘] category
-[✘] variables[
-
-    {
-        type: color_size,
-        elements : [
-            {
-                color : red,
-                sizes : [s,m]
-            }
-            {
-                color : blue,
-                sizes : [m,l]
-            }
-        ],
-    }
-]
-
-```
-
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
