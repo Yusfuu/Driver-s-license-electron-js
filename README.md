@@ -18,7 +18,7 @@ the person in charge of the exam will consult via his interface the statistics a
 
 > What's inside?
 
-- [Electronjs](https://turborepo.org/docs/features/pipelines)
+- [Electronjs](https://www.electronjs.org/)
 - [Apollo Server](https://www.apollographql.com/docs/apollo-server)
 - [Apollo Client](https://www.apollographql.com/docs/react)
 - [Reactjs](https://reactjs.org/)
