@@ -34,6 +34,9 @@ module.exports = {
               html: './public/index.html',
               js: './src/renderer.ts',
               name: 'index',
+              preload: {
+                js: './src/preload.ts',
+              },
             },
           ],
         },
